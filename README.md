@@ -37,4 +37,4 @@ Once cloned, navigate to the project folder and open `index.html` in your prefer
 No future developments are planned.
 
 ## Contributors
-Game developped by *August2068 (lien profil github) & Mikaocko (lien profil github)*
+Game developped by [August2068](https://github.com/August2068) & [Mikaocko](https://github.com/MikaOcko)
