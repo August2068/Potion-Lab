@@ -1,16 +1,93 @@
-html{
+/* ---------- Imports ----------*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kablammo&family=Yusei+Magic&display=swap');
+/*---------- General settings ----------*/
+
+:root{
+    --white-color: #ffffff;
+    --black-color: #0F2027;
+    --teal-gradient: linear-gradient(-45deg, #0F2027, #203A43, #2C5364 );
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+/* html{
     font-size: 2em;
-    background: linear-gradient(-45deg, #0F2027, #203A43, #2C5364 );
+    background: var(--teal-gradient);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 200% 200%;
     animation: ambient 20s infinite;
-}
-
+} */
 
 body{
-    color: #ffffff;
+    font-family: "Poppins", Verdana, Tahoma, sans-serif;
+    font-size: 14px;
+    color: var(--white-color);
+    background: var(--teal-gradient);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+/*---------- Specific settings ----------*/
+h1 {
+    font-family: "Kablammo", system-ui;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "MORF" 0;
+}
+
+.gameContainer{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.gameScreen{
+    background-color: var(--white-color);
+    color: var(--black-color);
+    width: 90%;
+    border-radius: 20px;
+    margin: 20px 0;
+    padding: 5px;
+}
+
+.potionsToFuse, .potionFused {
+    display: inline-flex;
+    width: 100%;
+}
+
+.potionsToFuse{
+    background-color: red;
+    justify-content: space-around;
+    padding: 10px;
+};
+
+.potion{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.potion img{
+    width: 100px;
+}
+.shaker{
+    background: green;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+.potionFused{
+    background-color: blue;
+    justify-content: center;
+    padding: 10px;
 }
