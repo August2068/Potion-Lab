@@ -1,6 +1,8 @@
 # Potion lab
 ## Brief
-*Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet ipsum turpis. Aenean et ullamcorper tortor. Sed pretium urna eget lacus malesuada, nec tempor sapien eleifend. Mauris nibh purus, volutpat a libero sit amet, ornare eleifend ipsum. Pellentesque velit est, tincidunt ultrices tincidunt ac, gravida in nibh. Quisque vel nisl at lectus convallis pulvinar. Praesent non scelerisque dui, sit amet aliquet nisi. Morbi fermentum lacus neque, non viverra odio ornare ut. Mauris malesuada, velit eu eleifend imperdiet, justo nisi mattis felis, eu sollicitudin eros magna sed est.*
+**Potion Lab** is a potion-blending game developed using HTML, CSS, and JavaScript. Players experiment with different potions to discover new creations by combining them. Each blend produces a unique potion whose properties are determined by the characteristics of the two potions used.
+
+The goal is to encourage experimentation, discovery, and the collection of new recipes.
 ![Screenshot](/assets/images/screenshot.png)
 
 ## Badges
@@ -28,7 +30,7 @@ Once downloaded, **unzip the file** and **open the `index.html` file in your web
 ### Clone project
 To clone the repository using Git, open a terminal and run:
 ```
-git clone *https://github.com/August2068/Potion-Lab.git*
+git clone https://github.com/August2068/Potion-Lab.git
 ```
 Replace `your-username` with your actual GitHub username if necessary.
 Once cloned, navigate to the project folder and open `index.html` in your preferred browser.
