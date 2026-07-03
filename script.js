@@ -25,8 +25,12 @@ let oldPotion = document.getElementById("oldPotion");
 let newPotion = document.getElementById("newPotion");
 let fusedPotion = document.getElementById("fusedPotion");
 let fuseButton = document.getElementById("fuseMEANDLEAVEMEALONE");
-// let fuseButton = document.getElementsById("fuseButton");
+let musicBG = document.getElementById("musicBG");
+let musicFuse = document.getElementById("musicFuse");
 
+document.addEventListener("click", ()=>{
+    musicBG.play();
+})
 
 if(load()==null){
     potionGenerator();
@@ -40,6 +44,7 @@ if(load()==null){
 //console.log(saveData.potionRDM);
 fuseButton.addEventListener("click",() =>{
     fusePotion(saveData.potion,saveData.potionRDM);
+    musicFuse.play();
 });
 // console.log(saveData.potion);
 // console.log(saveData.potionRDM);
