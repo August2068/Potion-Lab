@@ -3,20 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Potion lab</title>
 </head>
 <body>
-    <h1>Potion Lab</h1>
-    <div class="gameScreen">
-        <div class="potionsToFUse">
-            <p>test potions a fusionner</p>
-        </div>
-        <div class="shaker">
-             <p>click me to fuse</p>
-        </div>
-        <div class="potionFused">
-                <p>result</p>
+    <div class="gameContainer">
+        <!-- Titre -->
+        <h1>Potion Lab</h1>
+        <!-- Mix des potions -->
+        <div class="gameScreen">
+            <div class="potionsToFuse">
+                <!-- Potion basée en local storage -->
+                <div class="potion" id="oldPotion">
+                    <img src="assets/images/weak-potion.png" alt="potion image" srcset="">
+                    <p>Lorem ipsum</p>
+                </div>
+                <!-- Potion aléatoire -->
+                <div class="potion" id="newPotion">
+                    <img src="assets/images/legendary-potion.png" alt="potion image" srcset="">
+                    <p>Lorem ipsum</p>
+                </div>
+
+            </div>
+            <!-- Shaker : animation ? -->
+            <div class="shaker">
+                <div class="potion">
+                    <img src="assets/images/shaker.png" alt="shaker image" srcset="">
+                    <p>click me to fuse</p>
+                </div>
+            </div>
+            <div class="potionFused">
+                <!-- Potion fusionnée, stockée en local storage -->
+                <div class="potion" id="fusedPotion">
+                    <img src="assets/images/powerful-potion.png" alt="potion image" srcset="">
+                    <p>Lorem ipsum</p>
+                </div>
+            </div>
         </div>
     </div>
 </body>
