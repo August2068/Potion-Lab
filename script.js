@@ -30,9 +30,11 @@ let fuseButton = document.getElementsById("fuseButton");
 if(load()==null){
     potionGenerator();
     oldPotion.children[0].src=`assets/images/${saveData.potion.powerName}-potion.png`;
+    oldPotion.style.backgroundColor=saveData.potion.color;
     console.log(saveData.potion);
     potionRandomGenerator();
     newPotion.children[0].src=`assets/images/${saveData.potionRDM.powerName}-potion.png`;
+    newPotion.style.backgroundColor=saveData.potionRDM.color;
 };
 //console.log(saveData.potion);
 //console.log(saveData.potionRDM);
@@ -100,6 +102,9 @@ function fusePotion(potion1,potion2){
     oldPotion.children[0].src=`assets/images/${saveData.potion.powerName}-potion.png`;
     fusedPotion.children[0].src=`assets/images/${saveData.potion.powerName}-potion.png`;
     newPotion.children[0].src=`assets/images/${saveData.potionRDM.powerName}-potion.png`;
+    oldPotion.style.backgroundColor=saveData.potion.color;
+    newPotion.style.backgroundColor=saveData.potionRDM.color;
+    fusedPotion.style.backgroundColor=saveData.potion.color;
 }
 
 function clamp(value, min, max) {
