@@ -67,7 +67,6 @@ h1 {
 }
 
 .potionsToFuse{
-    background-color: red;
     justify-content: space-around;
     padding: 10px;
 };
@@ -81,13 +80,18 @@ h1 {
     width: 100px;
 }
 .shaker{
-    background: green;
     display: flex;
     justify-content: center;
     padding: 10px;
 }
 .potionFused{
-    background-color: blue;
     justify-content: center;
     padding: 10px;
+}
+
+/* --------- Media queries ---------- */
+@media screen and (min-width: 700px) {
+    .gameScreen{
+        width: 700px;
+    }
 }
