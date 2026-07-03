@@ -34,14 +34,16 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
-/*---------- Specific settings ----------*/
+
 h1 {
     font-family: "Kablammo", system-ui;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
     font-variation-settings: "MORF" 0;
+    font-size: 3rem;
 }
+/*---------- Specific settings ----------*/
 
 .gameContainer{
     display: flex;
@@ -71,14 +73,19 @@ h1 {
     padding: 10px;
 };
 
-.potion{
+.potionContainer, .shakerContainer{
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-.potion img{
-    width: 100px;
+.potionContainer img, .shakerContainer img{
+    width: 90px;
 }
+
+.shakerContainer img {
+    margin-left: 10px;
+}
+
 .shaker{
     display: flex;
     justify-content: center;
@@ -87,6 +94,36 @@ h1 {
 .potionFused{
     justify-content: center;
     padding: 10px;
+}
+
+/* ---------- Animations ---------- */
+@keyframes bounceAnimation {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+}
+
+.potionContainer img:hover{
+  animation-name: bounceAnimation;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: both;
+}
+
+@keyframes shakeAnimation {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+  20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+.shakerContainer img:hover{
+  animation-name: shakeAnimation;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: both;
 }
 
 /* --------- Media queries ---------- */
