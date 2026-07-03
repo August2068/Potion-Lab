@@ -1,0 +1,21 @@
+{
+    "effect" :[
+        {
+        "name" : "healing",
+        "type" : 1
+        },
+        {
+        "name" : "poison",
+        "type" : -1
+        },
+        {
+        "name" : "fire resistance",
+        "type" : 1
+        },
+        {
+        "name" : "frost resistance",
+        "type" : -1
+        }
+    ],
+    "power":["weak","medium","strong","powerful","legendary"]
+}   
