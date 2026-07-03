@@ -21,17 +21,26 @@ const effect = {
     type : [1,-1,1,-1],
     powerName:["weak","medium","strong","powerful","legendary"]
 }
+let oldPotion = document.getElementById("oldPotion");
+let newPotion = document.getElementById("newPotion");
+let fusedPotion = document.getElementById("fusedPotion");
+let fuseButton = document.getElementsById("fuseButton");
+
 
 if(load()==null){
     potionGenerator();
+    oldPotion.children[0].src=`assets/images/${saveData.potion.powerName}-potion.png`;
+    console.log(saveData.potion);
     potionRandomGenerator();
+    newPotion.children[0].src=`assets/images/${saveData.potionRDM.powerName}-potion.png`;
 };
-console.log(saveData.potion);
-console.log(saveData.potionRDM);
-
-fusePotion(saveData.potion,saveData.potionRDM);
-console.log(saveData.potion);
-console.log(saveData.potionRDM);
+//console.log(saveData.potion);
+//console.log(saveData.potionRDM);
+fuseButton.addEventListener("click",() =>{
+    fusePotion(saveData.potion,saveData.potionRDM);
+});
+// console.log(saveData.potion);
+// console.log(saveData.potionRDM);
 
 
 function load(){
@@ -88,6 +97,9 @@ function fusePotion(potion1,potion2){
     saveData.potion.powerName = effect.powerName[Math.round(saveData.potion.power/2)];
     saveData.potion.color = getRandomColor();
     potionRandomGenerator();
+    oldPotion.children[0].src=`assets/images/${saveData.potion.powerName}-potion.png`;
+    fusedPotion.children[0].src=`assets/images/${saveData.potion.powerName}-potion.png`;
+    newPotion.children[0].src=`assets/images/${saveData.potionRDM.powerName}-potion.png`;
 }
 
 function clamp(value, min, max) {
