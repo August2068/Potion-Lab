@@ -18,8 +18,8 @@ let saveData = {
     potionList : []
 }
 const effect = {
-    name : ["healing","poison","fire resistance","frost resistance"],
-    type : [1,-1,1,-1],
+    name : ["healing","poison","fire resistance","frost resistance","remove curse","petrification"],
+    type : [1,-1,1,-1,1,-1],
     powerName:["weak","medium","strong","powerful","legendary", "unique"]
 }
 let oldPotion = document.getElementById("oldPotion");
@@ -39,7 +39,7 @@ if(load()==null){
     oldPotion.children[0].src=`assets/images/${saveData.potion.powerName}-potion.png`;
     oldPotion.style.backgroundColor=saveData.potion.color;
     oldPotion.children[1].innerText=saveData.potion.name;
-    saveData.potionList.push(structuredClone(saveData.potion));
+    saveData.potionList.push(structuredClone(saveData.potion)); 
     potionRandomGenerator();
     newPotion.children[0].src=`assets/images/${saveData.potionRDM.powerName}-potion.png`;
     newPotion.style.backgroundColor=saveData.potionRDM.color;
