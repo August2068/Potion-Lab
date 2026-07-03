@@ -63,6 +63,15 @@ h1 {
     padding: 5px;
 }
 
+.scoreScreen{
+    background-color: var(--white-color);
+    color: var(--black-color);
+    width: 90%;
+    border-radius: 20px;
+    margin: 20px 0;
+    padding: 5px;
+}
+
 .potionsToFuse, .potionFused {
     display: inline-flex;
     width: 100%;
