@@ -15,6 +15,14 @@ let saveData = {
         powerName:"",
         potionType:0
     },
+    potionOBJ :{
+        name:"",
+        color:"",
+        effect:"",
+        power:0,
+        powerName:"",
+        potionType:0
+    },
     potionList : []
 }
 const effect = {
@@ -22,6 +30,11 @@ const effect = {
     type : [1,-1,1,-1,1,-1],
     powerName:["weak","medium","strong","powerful","legendary", "unique"]
 }
+let score = 0;
+const maxRound = 10;
+let round = 0;
+const maxRefresh = 5;
+let refresh = 0;
 let oldPotion = document.getElementById("oldPotion");
 let newPotion = document.getElementById("newPotion");
 let fusedPotion = document.getElementById("fusedPotion");
@@ -48,17 +61,22 @@ if(load()==null){
     newPotion.style.backgroundColor=saveData.potionRDM.color;
     newPotion.style.borderRadius = "20px 20px 0 0";
     newPotion.children[1].innerText=saveData.potionRDM.name;
+    potionOBJGenerator(saveData.potionOBJ);
 };
 //console.log(saveData.potion);
 //console.log(saveData.potionRDM);
 shakerContainer.addEventListener("click",() =>{
-    fusePotion(saveData.potion,saveData.potionRDM);
+    if(round<=maxRound){
+        fusePotion(saveData.potion,saveData.potionRDM);
     if(musicFuseCount==5){
         musicFuseCount=0;
     }
     musicFuseArray[musicFuseCount].play();
     musicFuseCount++;
-    console.log(musicFuseCount);
+    }
+    else{
+        alert("Stop playing don't ya have some homework to do ?!");
+    }
 });
 // console.log(saveData.potion);
 // console.log(saveData.potionRDM);
@@ -87,6 +105,15 @@ function potionRandomGenerator(){
     saveData.potionRDM.powerName = effect.powerName[Math.round(saveData.potionRDM.power/2)];
     saveData.potionRDM.name = `${saveData.potionRDM.powerName} potion of ${saveData.potionRDM.effect}`;
     saveData.potionRDM.potionType = effect.type[effect.name.indexOf(saveData.potionRDM.effect)];
+};
+
+function potionOBJGenerator(potionOBJ){
+    potionOBJ.power = Math.floor(Math.random() * 6); 
+    potionOBJ.effect = randomValueFromArray(effect.name);
+    potionOBJ.color = getRandomColor();
+    potionOBJ.powerName = effect.powerName[Math.round(potionOBJ.power/2)];
+    potionOBJ.name = `${potionOBJ.powerName} potion of ${potionOBJ.effect}`;
+    potionOBJ.potionType = effect.type[effect.name.indexOf(potionOBJ.effect)];
 };
 
 function randomValueFromArray(array) {
@@ -161,3 +188,50 @@ function fusePotion(potion1,potion2){
 function clamp(value, min, max) {
     return Math.min(Math.max(value, min), max);
 }
+
+function sellPotion(){
+    if(saveData.potion.effect===saveData.potionOBJ.effect){
+        score+=15;
+    }else{
+        score-=10;
+    }
+    if(saveData.potion.power===saveData.potionOBJ.power){
+        score+=5;
+    }else{
+        score-=5;
+    }
+    if(saveData.potion.color===saveData.potionOBJ.color){
+        score+=5;
+    }else{
+        score-=1;
+    }
+    if(saveData.potion.type===saveData.potionOBJ.type){
+        score+=1;
+    }else{
+        score-=5;
+    }
+    round++;
+    if(round=>maxRound){
+        alert(`Game over / your score is ${score}`);
+    }else{
+        potionOBJGenerator(saveData.potionOBJ);
+        potionRandomGenerator();
+        newPotion.children[0].src=`assets/images/${saveData.potionRDM.powerName}-potion.png`;
+        newPotion.style.backgroundColor=saveData.potionRDM.color;
+        newPotion.style.borderRadius = "20px 20px 0 0";
+        newPotion.children[1].innerText=saveData.potionRDM.name;
+    }
+}
+
+function refreshPotion(){
+    if (refresh<=maxRefresh){
+        potionRandomGenerator();
+        newPotion.children[0].src=`assets/images/${saveData.potionRDM.powerName}-potion.png`;
+        newPotion.style.backgroundColor=saveData.potionRDM.color;
+        newPotion.style.borderRadius = "20px 20px 0 0";
+        newPotion.children[1].innerText=saveData.potionRDM.name;
+    }else{
+        alert("No more refresh available : skill issue");
+    }
+    refresh++;
+};
