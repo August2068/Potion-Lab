@@ -25,10 +25,11 @@ const effect = {
 let oldPotion = document.getElementById("oldPotion");
 let newPotion = document.getElementById("newPotion");
 let fusedPotion = document.getElementById("fusedPotion");
-let fuseButton = document.getElementById("fuseMEANDLEAVEMEALONE");
+// let fuseButton = document.getElementById("fuseMEANDLEAVEMEALONE");
+let shakerContainer = document.querySelector(".shakerContainer");
+// let fuseButton = document.getElementsById("fuseButton");
 let musicBG = document.getElementById("musicBG");
 let musicFuse = document.getElementById("musicFuse");
-console.log(oldPotion.children[1])
 
 document.addEventListener("click", ()=>{
     musicBG.play();
@@ -38,16 +39,18 @@ if(load()==null){
     potionGenerator();
     oldPotion.children[0].src=`assets/images/${saveData.potion.powerName}-potion.png`;
     oldPotion.style.backgroundColor=saveData.potion.color;
+    oldPotion.style.borderRadius = "20px 20px 0 0";
     oldPotion.children[1].innerText=saveData.potion.name;
     saveData.potionList.push(structuredClone(saveData.potion)); 
     potionRandomGenerator();
     newPotion.children[0].src=`assets/images/${saveData.potionRDM.powerName}-potion.png`;
     newPotion.style.backgroundColor=saveData.potionRDM.color;
+    newPotion.style.borderRadius = "20px 20px 0 0";
     newPotion.children[1].innerText=saveData.potionRDM.name;
 };
 //console.log(saveData.potion);
 //console.log(saveData.potionRDM);
-fuseButton.addEventListener("click",() =>{
+shakerContainer.addEventListener("click",() =>{
     fusePotion(saveData.potion,saveData.potionRDM);
     musicFuse.play();
 });
@@ -138,6 +141,7 @@ function fusePotion(potion1,potion2){
     oldPotion.style.backgroundColor=saveData.potion.color;
     newPotion.style.backgroundColor=saveData.potionRDM.color;
     fusedPotion.style.backgroundColor=saveData.potion.color;
+    fusedPotion.style.borderRadius = "20px 20px 0 0";
     fusedPotion.style.backgroundColor="none";
     oldPotion.children[1].innerText=saveData.potion.name;
     fusedPotion.children[1].innerText=saveData.potion.name;
