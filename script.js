@@ -27,6 +27,7 @@ let fusedPotion = document.getElementById("fusedPotion");
 let fuseButton = document.getElementById("fuseMEANDLEAVEMEALONE");
 let musicBG = document.getElementById("musicBG");
 let musicFuse = document.getElementById("musicFuse");
+console.log(oldPotion.children[1])
 
 document.addEventListener("click", ()=>{
     musicBG.play();
@@ -36,9 +37,11 @@ if(load()==null){
     potionGenerator();
     oldPotion.children[0].src=`assets/images/${saveData.potion.powerName}-potion.png`;
     oldPotion.style.backgroundColor=saveData.potion.color;
+    oldPotion.children[1].innerText=saveData.potion.name;
     potionRandomGenerator();
     newPotion.children[0].src=`assets/images/${saveData.potionRDM.powerName}-potion.png`;
     newPotion.style.backgroundColor=saveData.potionRDM.color;
+    newPotion.children[1].innerText=saveData.potionRDM.name;
 };
 //console.log(saveData.potion);
 //console.log(saveData.potionRDM);
@@ -99,9 +102,11 @@ function fusePotion(potion1,potion2){
     power3 = power1*potion1.potionType + power2*potion2.potionType;
     power3 = Math.abs(power3);
     saveData.potion.power= clamp((power3),0,10);
-    saveData.potion.name = `${saveData.potion.powerName} potion of ${saveData.potion.effect}`;
     saveData.potion.potionType = effect.type[effect.name.indexOf(saveData.potion.effect)];
     saveData.potion.powerName = effect.powerName[Math.floor(saveData.potion.power/2)];
+    console.log(Math.floor(saveData.potion.power/2));
+    console.log(effect.powerName[Math.floor(saveData.potion.power/2)]);
+    saveData.potion.name = `${saveData.potion.powerName} potion of ${saveData.potion.effect}`;
     saveData.potion.color = getRandomColor();
     potionRandomGenerator();
     console.log(saveData.potion.power==10);
@@ -111,10 +116,16 @@ function fusePotion(potion1,potion2){
             fusedPotion.children[0].src=`assets/images/${saveData.potion.powerName}-good-potion.png`;
             oldPotion.style.backgroundColor="none";
             fusedPotion.style.backgroundColor="none";
+            oldPotion.children[1].innerText=saveData.potion.name;
+            fusedPotion.children[1].innerText=saveData.potion.name;
+            newPotion.children[1].innerText=saveData.potionRDM.name;
         }else{
             oldPotion.children[0].src=`assets/images/${saveData.potion.powerName}-bad-potion.png`;
             fusedPotion.children[0].src=`assets/images/${saveData.potion.powerName}-bad-potion.png`;
             oldPotion.style.backgroundColor="none";
+            oldPotion.children[1].innerText=saveData.potion.name;
+            fusedPotion.children[1].innerText=saveData.potion.name;
+            newPotion.children[1].innerText=saveData.potionRDM.name;
         }
         newPotion.children[0].src=`assets/images/${saveData.potionRDM.powerName}-potion.png`;
         newPotion.style.backgroundColor=saveData.potionRDM.color;
@@ -126,7 +137,11 @@ function fusePotion(potion1,potion2){
     newPotion.style.backgroundColor=saveData.potionRDM.color;
     fusedPotion.style.backgroundColor=saveData.potion.color;
     fusedPotion.style.backgroundColor="none";
+    oldPotion.children[1].innerText=saveData.potion.name;
+    fusedPotion.children[1].innerText=saveData.potion.name;
+    newPotion.children[1].innerText=saveData.potionRDM.name;
     }
+    
     
     console.log(saveData.potion);
     console.log(saveData.potionRDM);
