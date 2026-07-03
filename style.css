@@ -18,22 +18,20 @@
     list-style: none;
 }
 
-/* html{
-    font-size: 2em;
-    background: var(--teal-gradient);
+html{
+    background: url('assets/images/background.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 200% 200%;
-    animation: ambient 20s infinite;
-} */
+}
 
 body{
     font-family: "Poppins", Verdana, Tahoma, sans-serif;
     font-size: 14px;
     color: var(--white-color);
-    background: var(--teal-gradient);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    /* background: var(--teal-gradient);*/
 }
 
 h1 {
@@ -43,6 +41,7 @@ h1 {
     font-style: normal;
     font-variation-settings: "MORF" 0;
     font-size: 3rem;
+    text-shadow: 2px 2px 0 var(--black-color);
 }
 /*---------- Specific settings ----------*/
 
