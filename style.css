@@ -6,6 +6,7 @@
 :root{
     --white-color: #ffffff;
     --black-color: #0F2027;
+    --teal-color: #2C5364;
     --teal-gradient: linear-gradient(-45deg, #0F2027, #203A43, #2C5364 );
 }
 
@@ -96,6 +97,18 @@ h1 {
     padding: 10px;
 }
 
+#fuseMEANDLEAVEMEALONE{
+    border: 2px solid var(--teal-color);
+    background-color: var(--teal-color);
+    color: var(--white-color);
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+}
 /* ---------- Animations ---------- */
 @keyframes bounceAnimation {
   0%, 100% { transform: translateY(0); }
