@@ -24,7 +24,8 @@ const effect = {
 let oldPotion = document.getElementById("oldPotion");
 let newPotion = document.getElementById("newPotion");
 let fusedPotion = document.getElementById("fusedPotion");
-let fuseButton = document.getElementById("fuseMEANDLEAVEMEALONE");
+// let fuseButton = document.getElementById("fuseMEANDLEAVEMEALONE");
+let shakerContainer = document.querySelector(".shakerContainer");
 // let fuseButton = document.getElementsById("fuseButton");
 
 
@@ -40,7 +41,7 @@ if(load()==null){
 };
 //console.log(saveData.potion);
 //console.log(saveData.potionRDM);
-fuseButton.addEventListener("click",() =>{
+shakerContainer.addEventListener("click",() =>{
     fusePotion(saveData.potion,saveData.potionRDM);
 });
 // console.log(saveData.potion);
