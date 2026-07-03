@@ -19,7 +19,7 @@ let saveData = {
 const effect = {
     name : ["healing","poison","fire resistance","frost resistance"],
     type : [1,-1,1,-1],
-    powerName:["weak","medium","strong","powerful","legendary"]
+    powerName:["weak","medium","strong","powerful","legendary", "unique"]
 }
 let oldPotion = document.getElementById("oldPotion");
 let newPotion = document.getElementById("newPotion");
@@ -96,15 +96,33 @@ function fusePotion(potion1,potion2){
     saveData.potion.power= clamp((power3),0,10);
     saveData.potion.name = `${saveData.potion.powerName} potion of ${saveData.potion.effect}`;
     saveData.potion.potionType = effect.type[effect.name.indexOf(saveData.potion.effect)];
-    saveData.potion.powerName = effect.powerName[Math.round(saveData.potion.power/2)];
+    saveData.potion.powerName = effect.powerName[Math.floor(saveData.potion.power/2)];
     saveData.potion.color = getRandomColor();
     potionRandomGenerator();
+    console.log(saveData.potion.power==10);
+    if(saveData.potion.power==10){
+        if(saveData.potion.potionType==1){
+            oldPotion.children[0].src=`assets/images/${saveData.potion.powerName}-good-potion.png`;
+            fusedPotion.children[0].src=`assets/images/${saveData.potion.powerName}-good-potion.png`;
+            oldPotion.style.backgroundColor="none";
+            fusedPotion.style.backgroundColor="none";
+        }else{
+            oldPotion.children[0].src=`assets/images/${saveData.potion.powerName}-bad-potion.png`;
+            fusedPotion.children[0].src=`assets/images/${saveData.potion.powerName}-bad-potion.png`;
+            oldPotion.style.backgroundColor="none";
+        }
+        newPotion.children[0].src=`assets/images/${saveData.potionRDM.powerName}-potion.png`;
+        newPotion.style.backgroundColor=saveData.potionRDM.color;
+    }else{
     oldPotion.children[0].src=`assets/images/${saveData.potion.powerName}-potion.png`;
     fusedPotion.children[0].src=`assets/images/${saveData.potion.powerName}-potion.png`;
     newPotion.children[0].src=`assets/images/${saveData.potionRDM.powerName}-potion.png`;
     oldPotion.style.backgroundColor=saveData.potion.color;
     newPotion.style.backgroundColor=saveData.potionRDM.color;
     fusedPotion.style.backgroundColor=saveData.potion.color;
+    fusedPotion.style.backgroundColor="none";
+    }
+    
     console.log(saveData.potion);
     console.log(saveData.potionRDM);
 }
