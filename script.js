@@ -14,7 +14,8 @@ let saveData = {
         power:0,
         powerName:"",
         potionType:0
-    }
+    },
+    potionList : []
 }
 const effect = {
     name : ["healing","poison","fire resistance","frost resistance"],
@@ -38,6 +39,7 @@ if(load()==null){
     oldPotion.children[0].src=`assets/images/${saveData.potion.powerName}-potion.png`;
     oldPotion.style.backgroundColor=saveData.potion.color;
     oldPotion.children[1].innerText=saveData.potion.name;
+    saveData.potionList.push(structuredClone(saveData.potion));
     potionRandomGenerator();
     newPotion.children[0].src=`assets/images/${saveData.potionRDM.powerName}-potion.png`;
     newPotion.style.backgroundColor=saveData.potionRDM.color;
@@ -142,9 +144,8 @@ function fusePotion(potion1,potion2){
     newPotion.children[1].innerText=saveData.potionRDM.name;
     }
     
-    
-    console.log(saveData.potion);
-    console.log(saveData.potionRDM);
+    saveData.potionList.push(structuredClone(saveData.potion));
+    console.log(saveData.potionList);
 }
 
 function clamp(value, min, max) {
