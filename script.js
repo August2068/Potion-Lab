@@ -32,9 +32,11 @@ if(load()==null){
     potionGenerator();
     oldPotion.children[0].src=`assets/images/${saveData.potion.powerName}-potion.png`;
     oldPotion.style.backgroundColor=saveData.potion.color;
+    oldPotion.style.borderRadius = "20px 20px 0 0";
     potionRandomGenerator();
     newPotion.children[0].src=`assets/images/${saveData.potionRDM.powerName}-potion.png`;
     newPotion.style.backgroundColor=saveData.potionRDM.color;
+    newPotion.style.borderRadius = "20px 20px 0 0";
 };
 //console.log(saveData.potion);
 //console.log(saveData.potionRDM);
@@ -120,6 +122,7 @@ function fusePotion(potion1,potion2){
     oldPotion.style.backgroundColor=saveData.potion.color;
     newPotion.style.backgroundColor=saveData.potionRDM.color;
     fusedPotion.style.backgroundColor=saveData.potion.color;
+    fusedPotion.style.borderRadius = "20px 20px 0 0";
     fusedPotion.style.backgroundColor="none";
     }
     
