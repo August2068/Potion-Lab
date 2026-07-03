@@ -44,10 +44,15 @@ let shakerContainer = document.querySelector(".shakerContainer");
 let musicBG = document.getElementById("musicBG");
 let musicFuseCount = 0;
 let musicFuseArray = [document.getElementById("musicFuse1"),document.getElementById("musicFuse2"),document.getElementById("musicFuse3"),document.getElementById("musicFuse4"), document.getElementById("musicFuse5")];
+let potionSelect = document.getElementById("potionselect");
 
 document.addEventListener("click", ()=>{
     musicBG.play();
 })
+
+potionSelect.addEventListener("click",()=>{
+    choosePotion();
+});
 
 if(load()==null){
     potionGenerator();
@@ -182,7 +187,10 @@ function fusePotion(potion1,potion2){
     }
     
     saveData.potionList.push(structuredClone(saveData.potion));
+    potionSelect.options[potionSelect.options.length] = new Option(saveData.potionList[saveData.potionList.length-1].name, saveData.potionList.length-1);
     console.log(saveData.potionList);
+    console.log(saveData.potionList.length);
+    console.log(potionSelect);
 }
 
 function clamp(value, min, max) {
@@ -235,3 +243,16 @@ function refreshPotion(){
     }
     refresh++;
 };
+
+function choosePotion(){
+    saveData.potion.power = saveData.potionList[potionSelect.value].power;
+    saveData.potion.effect = saveData.potionList[potionSelect.value].effect;
+    saveData.potion.color = saveData.potionList[potionSelect.value].color;
+    saveData.potion.powerName = saveData.potionList[potionSelect.value].powerName;
+    saveData.potion.name = saveData.potionList[potionSelect.value].name;
+    saveData.potion.potionType = saveData.potionList[potionSelect.value].potionType;
+    oldPotion.children[0].src=`assets/images/${saveData.potion.powerName}-potion.png`;
+    oldPotion.style.backgroundColor=saveData.potion.color;
+    oldPotion.style.borderRadius = "20px 20px 0 0";
+    oldPotion.children[1].innerText=saveData.potion.name;
+}
