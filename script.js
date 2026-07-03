@@ -218,6 +218,10 @@ function sellPotion(){
     }else{
         score-=5;
     }
+    score+=Math.log((maxRound/round)*10);
+    if(saveData.potion.powerName=="unique"){
+        score+=15;
+    }
     round++;
     if(round=>maxRound){
         alert(`Game over / your score is ${score}`);
