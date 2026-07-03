@@ -29,7 +29,8 @@ let fusedPotion = document.getElementById("fusedPotion");
 let shakerContainer = document.querySelector(".shakerContainer");
 // let fuseButton = document.getElementsById("fuseButton");
 let musicBG = document.getElementById("musicBG");
-let musicFuse = document.getElementById("musicFuse");
+let musicFuseCount = 0;
+let musicFuseArray = [document.getElementById("musicFuse1"),document.getElementById("musicFuse2"),document.getElementById("musicFuse3"),document.getElementById("musicFuse4"), document.getElementById("musicFuse5")];
 
 document.addEventListener("click", ()=>{
     musicBG.play();
@@ -52,7 +53,12 @@ if(load()==null){
 //console.log(saveData.potionRDM);
 shakerContainer.addEventListener("click",() =>{
     fusePotion(saveData.potion,saveData.potionRDM);
-    musicFuse.play();
+    if(musicFuseCount==5){
+        musicFuseCount=0;
+    }
+    musicFuseArray[musicFuseCount].play();
+    musicFuseCount++;
+    console.log(musicFuseCount);
 });
 // console.log(saveData.potion);
 // console.log(saveData.potionRDM);
