@@ -27,6 +27,10 @@
     animation: ambient 20s infinite;
 } */
 
+hmtlm body{
+    cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png"), auto;
+}
+
 body{
     font-family: "Poppins", Verdana, Tahoma, sans-serif;
     font-size: 14px;
