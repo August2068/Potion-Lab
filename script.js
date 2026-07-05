@@ -160,7 +160,7 @@ function fusePotion(potion1,potion2){
     if(saveData.potion.powerName=="unique"){
         saveData.potion.color=effect.color[effect.name.indexOf(saveData.potion.effect)];
     }else{
-        saveData.potion.color = randomValueFromArray(effect.color);
+        saveData.potion.color = colorPicker(potion1.color,potion2.color);
     }
     potionRandomGenerator();
     console.log(saveData.potion.power==10);
@@ -183,11 +183,11 @@ function fusePotion(potion1,potion2){
     console.log(saveData.potionList);
     console.log(saveData.potionList.length);
     console.log(potionSelect);
-}
+};
 
 function clamp(value, min, max) {
     return Math.min(Math.max(value, min), max);
-}
+};
 
 function sellPotion(){
     if(saveData.potion.effect===saveData.potionOBJ.effect){
@@ -210,10 +210,10 @@ function sellPotion(){
     }else{
         score-=5;
     }
-    score+=Math.log((maxRound/round)*10);
     if(saveData.potion.powerName=="unique"){
         score+=15;
     }
+     score+=Math.log((maxRound/round)*10);
     round++;
     if(round=>maxRound){
         alert(`Game over / your score is ${score}`);
@@ -224,7 +224,7 @@ function sellPotion(){
         newPotion.style.borderRadius = "20px 20px 0 0";
         newPotion.children[1].innerText=saveData.potionRDM.name;
     }
-}
+};
 
 function refreshPotion(){
     if (refresh<=maxRefresh){
@@ -252,4 +252,36 @@ function choosePotion(){
     }
     oldPotion.style.borderRadius = "20px 20px 0 0";
     oldPotion.children[1].innerText=saveData.potion.name;
-}
+};
+
+function colorPicker(color1,color2){
+    console.log(color1, color2);
+    let color3="";
+    const sortOfPrimaryColor =["red","green","blue","yellow"];
+    if(color1=="black" && color2=="black"){
+        color3=randomValueFromArray(sortOfPrimaryColor);
+    }else if (color1=="grey"||color2=="grey"){
+        color3="black";
+    }else if((color1=="black"||color2=="black")||((color1=="purple"||color1=="orange"||color1=="brown")&&(color2=="purple"||color2=="orange"||color2=="brown"))){
+        color3="grey";
+    }else if(((color1=="red"||color1=="yellow")&&(color2=="red"||color2=="yellow"))||((color1=="orange"||color2=="orange"))){
+        color3="orange";
+    }else if(((color1=="red"||color1=="green")&&(color2=="red"||color2=="green"))||((color1=="brown"||color2=="brown"))){
+        color3="brown";
+    }else if(((color1=="red"||color1=="green")&&(color2=="red"||color2=="green"))||((color1=="brown"||color2=="brown"))){
+        color3="brown";
+    }else if(((color1=="red"||color1=="blue")&&(color2=="red"||color2=="blue"))||((color1=="purple"||color2=="purple"))){
+        color3="purple";
+    }else if((color1=="blue"||color1=="green")&&(color2=="blue"||color2=="green")){
+        color3="blue";
+    }else if((color1=="yellow"||color1=="green")&&(color2=="yellow"||color2=="green")){
+        color3="yellow";
+    }else if((color1=="green"&&color2=="green")||((color1=="blue"||color1=="yellow")&&(color2=="blue"||color2=="yellow"))){
+        color3="green";
+    }else if (color1=="red"&&color2=="red"){
+        color3="red";
+    }else{
+        color3=randomValueFromArray(effect.color);
+    }
+    return color3
+};
