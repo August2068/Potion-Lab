@@ -23,7 +23,8 @@ let saveData = {
         powerName:"",
         potionType:0
     },
-    potionList : []
+    potionList : [],
+    maxScore:0
 }
 const effect = {
     name : ["healing","poison","flying","curse","luck","petrification"],
@@ -46,6 +47,13 @@ let musicBG = document.getElementById("musicBG");
 let musicFuseCount = 0;
 let musicFuseArray = [document.getElementById("musicFuse1"),document.getElementById("musicFuse2"),document.getElementById("musicFuse3"),document.getElementById("musicFuse4"), document.getElementById("musicFuse5")];
 let potionSelect = document.getElementById("potionselect");
+let refreshButton = document.querySelector(".refresh");
+let roundDiv = document.querySelector(".round");
+let scoreNumberDiv = document.querySelector(".scoreNumber");
+let objectivePotionDiv = document.querySelector(".objectivePotion");
+let colorSquareOBJ = document.getElementById("colorOBJ");
+let sellButton = document.querySelector(".sell");
+const isReload = performance.getEntriesByType("navigation")[0]?.type ==='reload';
 
 document.addEventListener("click", ()=>{
     musicBG.play();
@@ -55,7 +63,7 @@ potionSelect.addEventListener("click",()=>{
     choosePotion();
 });
 
-if(load()==null){
+if(load()==null||isReload){
     potionGenerator();
      if(saveData.potion.powerName=="unique"){
         oldPotion.children[0].src=`assets/images/${saveData.potion.powerName}-${saveData.potion.effect}-potion.png`;
@@ -77,14 +85,18 @@ if(load()==null){
     newPotion.children[1].innerText=saveData.potionRDM.name;
     potionOBJGenerator(saveData.potionOBJ);
 };
+
+saveData=load();
+console.log(saveData);
 //console.log(saveData.potion);
 //console.log(saveData.potionRDM);
 shakerContainer.addEventListener("click",() =>{
-    if(round<=maxRound){
+    if(round<maxRound){
         fusePotion(saveData.potion,saveData.potionRDM);
         //
         //  save(saveData);
         //
+        sellButton.children[1].innerText=`Round : ${round} / ${maxRound}`;
     if(musicFuseCount==5){
         musicFuseCount=0;
     }
@@ -92,12 +104,26 @@ shakerContainer.addEventListener("click",() =>{
     musicFuseCount++;
     }
     else{
-        alert("Stop playing");
+        alert("Time's up ! You gotta sell your potion now !");
     }
 });
-// console.log(saveData.potion);
-// console.log(saveData.potionRDM);
 
+refreshButton.children[1].innerText=`${maxRefresh-refresh}/${maxRefresh}`;
+refreshButton.addEventListener("click", ()=>{
+    refreshPotion();
+});
+
+sellButton.children[1].innerText=`Round : ${round} / ${maxRound}`;
+sellButton.children[2].innerText=`Score : ${score}`;
+sellButton.addEventListener("click", ()=>{
+    if(round>0){
+        sellPotion();
+        if(score>saveData.maxScore){
+            saveData.maxScore=score;
+        }
+        save(saveData);
+    };
+});
 
 function load(){
     return JSON.parse(localStorage.getItem("save"));
@@ -125,7 +151,7 @@ function potionRandomGenerator(){
 };
 
 function potionOBJGenerator(potionOBJ){
-    potionOBJ.power = Math.floor(Math.random() * 11);
+    potionOBJ.power = clamp(Math.floor(Math.random() * 11),5,11);
     potionOBJ.powerName = effect.powerName[Math.round(potionOBJ.power/2)];
     potionOBJ.effect = randomValueFromArray(effect.name);
     if(potionOBJ.powerName=="unique"){
@@ -135,6 +161,9 @@ function potionOBJGenerator(potionOBJ){
     }
     potionOBJ.name = `${potionOBJ.powerName} potion of ${potionOBJ.effect}`;
     potionOBJ.potionType = effect.type[effect.name.indexOf(potionOBJ.effect)];
+    objectivePotionDiv.children[0].innerText=`effect : ${potionOBJ.effect}`;
+    objectivePotionDiv.children[1].innerText=`power : ${potionOBJ.powerName}`;
+    colorSquareOBJ.style.backgroundColor=potionOBJ.color;
 };
 
 function randomValueFromArray(array) {
@@ -146,6 +175,7 @@ function fusePotion(potion1,potion2){
     let power1 = potion1.power;
     let power2 = potion2.power;
     let power3 = 0;
+    round++;
     if(power1<power2){
         saveData.potion.effect = potion2.effect;
     }
@@ -213,10 +243,10 @@ function sellPotion(){
     if(saveData.potion.powerName=="unique"){
         score+=15;
     }
-     score+=Math.log((maxRound/round)*10);
-    round++;
+    score+=Math.log((maxRound/round)*10);
+    score=Math.floor(score);
     if(round=>maxRound){
-        alert(`Game over / your score is ${score}`);
+        alert(`Game over / your score is ${score} / ${saveData.maxScore}`);
     }else{
         potionOBJGenerator(saveData.potionOBJ);
         potionRandomGenerator();
@@ -227,15 +257,16 @@ function sellPotion(){
 };
 
 function refreshPotion(){
+    refresh++;
     if (refresh<=maxRefresh){
         potionRandomGenerator();
         newPotion.children[0].src=`assets/images/${saveData.potionRDM.color}-${saveData.potionRDM.powerName}-potion.png`;
         newPotion.style.borderRadius = "20px 20px 0 0";
         newPotion.children[1].innerText=saveData.potionRDM.name;
+        refreshButton.children[1].innerText=`${maxRefresh-refresh}/${maxRefresh}`;
     }else{
-        alert("No more refresh available");
+        alert("No more refresh available, let's hope you make it !");
     }
-    refresh++;
 };
 
 function choosePotion(){
