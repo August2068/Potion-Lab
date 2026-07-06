@@ -86,7 +86,7 @@ if(load()==null||isReload){
     potionOBJGenerator(saveData.potionOBJ);
 };
 
-saveData=load();
+// saveData=load();
 console.log(saveData);
 //console.log(saveData.potion);
 //console.log(saveData.potionRDM);
@@ -121,7 +121,7 @@ sellButton.addEventListener("click", ()=>{
         if(score>saveData.maxScore){
             saveData.maxScore=score;
         }
-        save(saveData);
+       //  save(saveData);
     };
 });
 
