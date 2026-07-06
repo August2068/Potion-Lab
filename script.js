@@ -58,6 +58,9 @@ let objectivePotionDiv = document.querySelector(".objectivePotion");
 let colorSquareOBJ = document.getElementById("colorOBJ");
 let sellButton = document.getElementById("sellButton");
 const isReload = performance.getEntriesByType("navigation")[0]?.type ==='reload';
+let roundNumber = document.getElementById("roundNumber");
+let levelNumber = document.getElementById("levelNumber");
+let scoreTotalNumber = document.getElementById("scoreTotal");
 
 document.addEventListener("click", ()=>{
     musicBG.play();
@@ -69,7 +72,8 @@ potionSelect.addEventListener("click",()=>{
 
 
 maxScore = Number(localStorage.getItem("maxScore"));
-
+scoreTotalNumber.innerText = `${scoreTotal}`;
+levelNumber.innerText = `${level}/${maxLevel}`;
 
 if(load()==null||isReload){
     potionGenerator();
@@ -117,6 +121,7 @@ shakerContainer.addEventListener("click",() =>{
     }
     refresh=0;
     refreshButton.children[1].innerText=`${maxRefresh-refresh}/${maxRefresh}`;
+    roundNumber.innerText = `${round}/${maxRound}`;
 });
 
 refreshButton.children[1].innerText=`${maxRefresh-refresh}/${maxRefresh}`;
@@ -132,19 +137,41 @@ sellButton.addEventListener("click", ()=>{
         level++;
         round=0;
         refresh=0;
+        scoreTotalNumber.innerText = `${scoreTotal}`;
+        levelNumber.innerText = `${level}/${maxLevel}`;
+        refreshButton.children[1].innerText=`${maxRefresh-refresh}/${maxRefresh}`;
+        roundNumber.innerText = `${round}/${maxRound}`;
         potionOBJGenerator(saveData.potionOBJ);
         if(level>=maxLevel){
             if(scoreTotal>maxScore){
             maxScore=scoreTotal;
             localStorage.setItem("maxScore",JSON.stringify(maxScore));
             }
-            alert(`Game Over / your score is ${scoreTotal} / ${maxScore}`);
-            saveData.potionList=[];
+            console.log(level);
+            console.log(potionSelect);
             for(let i=0; i<potionSelect.length;i++){
                 potionSelect.options.remove(i);
             }
+            console.log(potionSelect.options);
+            alert(`Game Over / your score is ${scoreTotal} / ${maxScore}`);
+            saveData.potionList=[];
+            console.log(potionSelect.length);
+            level=0;
+            scoreTotal=0;
+            scoreTotalNumber.innerText = `${scoreTotal}`;
+            levelNumber.innerText = `${level}/${maxLevel}`;
+            console.log(level);
+            console.log(potionSelect);
+            console.log("potionSelect = " + potionSelect.options.length);
+            for(let i=potionSelect.options.length; i > -1;i--){
+                console.log("i = " + i);
+                potionSelect.options.remove(i);
+            }
+            console.log(potionSelect.options);
         }
-    };
+    }else{
+        alert("You need to fuse a potion before you try to sell it !");
+    }
 });
 
 function load(){
