@@ -217,8 +217,8 @@ function potionOBJGenerator(potionOBJ){
     }
     potionOBJ.name = `${potionOBJ.powerName} potion of ${potionOBJ.effect}`;
     potionOBJ.potionType = effect.type[effect.name.indexOf(potionOBJ.effect)];
-    objectivePotionDiv.children[0].innerText=`effect : ${potionOBJ.effect}`;
-    objectivePotionDiv.children[1].innerText=`power : ${potionOBJ.powerName}`;
+    objectivePotionDiv.children[0].innerText=`Effect : ${potionOBJ.effect}`;
+    objectivePotionDiv.children[1].innerText=`Power : ${potionOBJ.powerName}`;
     colorSquareOBJ.style.backgroundColor=potionOBJ.color;
 };
 
