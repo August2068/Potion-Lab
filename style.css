@@ -127,17 +127,18 @@ select{
 }
 
 /* Score screen */
-/* .scoreScreen{
+.scoreScreen{
+    display: none;
     background-color: var(--white-color);
     color: var(--black-color);
     border-radius: 20px;
     width: 90%;
     margin: 20px 0;
-    padding: 5px;
-} */
-
-.scoreScreen{
-    display: none;
+    padding: 20px;
+    position: absolute;
+    top: 15%;
+    box-shadow: -2px 2px 2px var(--black-color);
+    z-index: 2;
 }
 
 .scoreScreen .refresh{

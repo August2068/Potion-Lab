@@ -322,3 +322,12 @@ function colorPicker(color1,color2){
     }
     return color3
 };
+
+// Potion magique
+let magicPotion = document.getElementsByClassName('magicPotion');
+let scoreScreen = document.getElementsByClassName("scoreScreen");
+console.log(magicPotion);
+
+magicPotion.addEventListener("click", function(){
+    scoreScreen.style.display = "block";
+});
