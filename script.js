@@ -24,8 +24,11 @@ let saveData = {
         potionType:0
     },
     potionList : [],
-    maxScore:0
 }
+let maxScore = 0;
+let level = 0;
+let scoreTotal = 0;
+const maxLevel = 5;
 const effect = {
     name : ["healing","poison","flying","curse","luck","petrification"],
     type : [1,-1,1,-1,1,-1],
@@ -36,7 +39,7 @@ const effect = {
 let score = 0;
 const maxRound = 10;
 let round = 0;
-const maxRefresh = 5;
+const maxRefresh = 3;
 let refresh = 0;
 let oldPotion = document.getElementById("oldPotion");
 let newPotion = document.getElementById("newPotion");
@@ -53,7 +56,7 @@ let roundDiv = document.querySelector(".round");
 let scoreNumberDiv = document.querySelector(".scoreNumber");
 let objectivePotionDiv = document.querySelector(".objectivePotion");
 let colorSquareOBJ = document.getElementById("colorOBJ");
-let sellButton = document.querySelector(".sell");
+let sellButton = document.getElementById("sellButton");
 const isReload = performance.getEntriesByType("navigation")[0]?.type ==='reload';
 
 document.addEventListener("click", ()=>{
@@ -63,6 +66,10 @@ document.addEventListener("click", ()=>{
 potionSelect.addEventListener("click",()=>{
     choosePotion();
 });
+
+
+maxScore = Number(localStorage.getItem("maxScore"));
+
 
 if(load()==null||isReload){
     potionGenerator();
@@ -99,7 +106,6 @@ shakerContainer.addEventListener("click",() =>{
         //
         //  save(saveData);
         //
-        sellButton.children[1].innerText=`Round : ${round} / ${maxRound}`;
     if(musicFuseCount==5){
         musicFuseCount=0;
     }
@@ -109,6 +115,8 @@ shakerContainer.addEventListener("click",() =>{
     else{
         alert("Time's up ! You gotta sell your potion now !");
     }
+    refresh=0;
+    refreshButton.children[1].innerText=`${maxRefresh-refresh}/${maxRefresh}`;
 });
 
 refreshButton.children[1].innerText=`${maxRefresh-refresh}/${maxRefresh}`;
@@ -116,15 +124,26 @@ refreshButton.addEventListener("click", ()=>{
     refreshPotion();
 });
 
-sellButton.children[1].innerText=`Round : ${round} / ${maxRound}`;
-sellButton.children[2].innerText=`Score : ${score}`;
 sellButton.addEventListener("click", ()=>{
     if(round>0){
         sellPotion();
-        if(score>saveData.maxScore){
-            saveData.maxScore=score;
+        scoreTotal+=score;
+        score=0;
+        level++;
+        round=0;
+        refresh=0;
+        potionOBJGenerator(saveData.potionOBJ);
+        if(level>=maxLevel){
+            if(scoreTotal>maxScore){
+            maxScore=scoreTotal;
+            localStorage.setItem("maxScore",JSON.stringify(maxScore));
+            }
+            alert(`Game Over / your score is ${scoreTotal} / ${maxScore}`);
+            saveData.potionList=[];
+            for(let i=0; i<potionSelect.length;i++){
+                potionSelect.options.remove(i);
+            }
         }
-       //  save(saveData);
     };
 });
 
@@ -154,11 +173,18 @@ function potionRandomGenerator(){
 };
 
 function potionOBJGenerator(potionOBJ){
-    potionOBJ.power = clamp(Math.floor(Math.random() * 11),5,11);
+    if(level==0){
+        potionOBJ.power = clamp(Math.floor(Math.random() * 5),0,4);
+    }else if(level<3){
+        potionOBJ.power = clamp(Math.floor(Math.random() * 11),5,8);
+    }else{
+        potionOBJ.power = clamp(Math.floor(Math.random() * 11),8,10);
+    }
+    
     potionOBJ.powerName = effect.powerName[Math.round(potionOBJ.power/2)];
     potionOBJ.effect = randomValueFromArray(effect.name);
     if(potionOBJ.powerName=="unique"){
-        potionOBJ.color=effect.color[effect.name.indexOf(potionOBJ.powerName)];
+        potionOBJ.color=effect.color[effect.name.indexOf(potionOBJ.effect)];
     }else{
         potionOBJ.color = randomValueFromArray(effect.colorOBJ);
     }
@@ -252,7 +278,7 @@ function sellPotion(){
     score+=Math.log((maxRound/round)*10);
     score=Math.floor(score);
     if(round=>maxRound){
-        alert(`Game over / your score is ${score} / ${saveData.maxScore}`);
+        alert(`Round over / your score is ${score}`);
     }else{
         potionOBJGenerator(saveData.potionOBJ);
         potionRandomGenerator();
