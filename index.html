@@ -17,12 +17,13 @@
                 <!-- Potion basée en local storage -->
                 <div class="potionContainer" id="oldPotion">
                     <img src="assets/images/weak-potion.png" alt="potion image" srcset="">
-                    <p>Lorem ipsum</p>
+                    <p></p>
+                    <select name="potionselector" id="potionselect"></select>
                 </div>
                 <!-- Potion aléatoire -->
                 <div class="potionContainer" id="newPotion">
                     <img src="assets/images/legendary-potion.png" alt="potion image" srcset="">
-                    <p>Lorem ipsum</p>
+                    <p></p>
                 </div>
 
             </div>
@@ -37,9 +38,10 @@
                 <!-- Potion fusionnée, stockée en local storage -->
                 <div class="potionContainer" id="fusedPotion">
                     <img src="assets/images/powerful-potion.png" alt="potion image" srcset="">
-                    <p>Lorem ipsum</p>
+                    <p></p>
                 </div>
             </div>
+
         </div>
         <!-- Fenêtre des stats -->
         <div class="scoreScreen">
@@ -49,17 +51,22 @@
                     Refresh
                 </button>
                 <p>2 tries</p>
+
             </div>
             <!-- Tour actuel + nombre de tour restant -->
             <div class="round">
+
                 <p>Round : <span id="roundNumber">4</span>/10</p>
+
             </div>
             <!-- Score total -->
             <div class="scoreNumber">
+
                 <p>Coins: <span id="scoreTotal">35</span> 🪙</p>
             </div>
             <!-- Objectifs à accomplir -->
             <div class="objectivePotion">
+
                 <p>Goals :</p>
                 <ul>
                     <li>Effect: <span id="effectOBJ">frost resistance</span></li>
@@ -69,7 +76,9 @@
                         <span id="colorOBJ"></span>
                     </li>
                 </ul>
+
             </div>
+        </div>  
         </div>
         <!-- Potion magique -->
          <div class="magicPotion">
