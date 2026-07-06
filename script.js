@@ -53,7 +53,7 @@ let roundDiv = document.querySelector(".round");
 let scoreNumberDiv = document.querySelector(".scoreNumber");
 let objectivePotionDiv = document.querySelector(".objectivePotion");
 let colorSquareOBJ = document.getElementById("colorOBJ");
-let sellButton = document.querySelector(".sell");
+let sellButton = document.getElementById("sellButton");
 const isReload = performance.getEntriesByType("navigation")[0]?.type ==='reload';
 
 document.addEventListener("click", ()=>{
@@ -104,7 +104,6 @@ shakerContainer.addEventListener("click",() =>{
         //
         //  save(saveData);
         //
-        sellButton.children[1].innerText=`Round : ${round} / ${maxRound}`;
     if(musicFuseCount==5){
         musicFuseCount=0;
     }
@@ -121,8 +120,6 @@ refreshButton.addEventListener("click", ()=>{
     refreshPotion();
 });
 
-sellButton.children[1].innerText=`Round : ${round} / ${maxRound}`;
-sellButton.children[2].innerText=`Score : ${score}`;
 sellButton.addEventListener("click", ()=>{
     if(round>0){
         sellPotion();
@@ -163,7 +160,7 @@ function potionOBJGenerator(potionOBJ){
     potionOBJ.powerName = effect.powerName[Math.round(potionOBJ.power/2)];
     potionOBJ.effect = randomValueFromArray(effect.name);
     if(potionOBJ.powerName=="unique"){
-        potionOBJ.color=effect.color[effect.name.indexOf(potionOBJ.powerName)];
+        potionOBJ.color=effect.color[effect.name.indexOf(potionOBJ.effect)];
     }else{
         potionOBJ.color = randomValueFromArray(effect.colorOBJ);
     }
