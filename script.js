@@ -24,8 +24,8 @@ let saveData = {
         potionType:0
     },
     potionList : [],
-    maxScore:0
 }
+let maxScore = 0;
 const effect = {
     name : ["healing","poison","flying","curse","luck","petrification"],
     type : [1,-1,1,-1,1,-1],
@@ -63,6 +63,11 @@ document.addEventListener("click", ()=>{
 potionSelect.addEventListener("click",()=>{
     choosePotion();
 });
+
+if(load()!=null){
+    maxScore = Number(localStorage.getItem("maxScore"));
+    localStorage.clear();
+}
 
 if(load()==null||isReload){
     potionGenerator();
@@ -121,8 +126,8 @@ sellButton.children[2].innerText=`Score : ${score}`;
 sellButton.addEventListener("click", ()=>{
     if(round>0){
         sellPotion();
-        if(score>saveData.maxScore){
-            saveData.maxScore=score;
+        if(score>maxScore){
+            maxScore=score;
         }
        //  save(saveData);
     };
@@ -251,8 +256,9 @@ function sellPotion(){
     }
     score+=Math.log((maxRound/round)*10);
     score=Math.floor(score);
+    localStorage.setItem("maxScore",JSON.stringify(maxScore));
     if(round=>maxRound){
-        alert(`Game over / your score is ${score} / ${saveData.maxScore}`);
+        alert(`Game over / your score is ${score} / ${maxScore}`);
     }else{
         potionOBJGenerator(saveData.potionOBJ);
         potionRandomGenerator();
