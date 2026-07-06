@@ -30,7 +30,8 @@ const effect = {
     name : ["healing","poison","flying","curse","luck","petrification"],
     type : [1,-1,1,-1,1,-1],
     powerName:["weak","medium","strong","powerful","legendary", "unique"],
-    color:["red","green","blue","purple","yellow","grey", "black","brown","orange"]
+    color:["red","green","blue","purple","yellow","grey", "black","brown","orange","red","green","blue","yellow","red","green","blue","yellow"],
+    colorOBJ:["red","green","blue","purple","yellow","grey", "black","brown","orange"]
 }
 let score = 0;
 const maxRound = 10;
@@ -157,7 +158,7 @@ function potionOBJGenerator(potionOBJ){
     if(potionOBJ.powerName=="unique"){
         potionOBJ.color=effect.color[effect.name.indexOf(potionOBJ.powerName)];
     }else{
-        potionOBJ.color = randomValueFromArray(effect.color);
+        potionOBJ.color = randomValueFromArray(effect.colorOBJ);
     }
     potionOBJ.name = `${potionOBJ.powerName} potion of ${potionOBJ.effect}`;
     potionOBJ.potionType = effect.type[effect.name.indexOf(potionOBJ.effect)];
