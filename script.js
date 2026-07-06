@@ -54,12 +54,14 @@ if(load()==null){
     oldPotion.children[0].src=`assets/images/${saveData.potion.powerName}-potion.png`;
     oldPotion.style.backgroundColor=saveData.potion.color;
     oldPotion.style.borderRadius = "20px 20px 0 0";
+    oldPotion.style.textAlign = "center";
     oldPotion.children[1].innerText=saveData.potion.name;
     saveData.potionList.push(structuredClone(saveData.potion)); 
     potionRandomGenerator();
     newPotion.children[0].src=`assets/images/${saveData.potionRDM.powerName}-potion.png`;
     newPotion.style.backgroundColor=saveData.potionRDM.color;
     newPotion.style.borderRadius = "20px 20px 0 0";
+    newPotion.style.textAlign = "center";
     newPotion.children[1].innerText=saveData.potionRDM.name;
     potionOBJGenerator(saveData.potionOBJ);
 };
@@ -175,6 +177,7 @@ function fusePotion(potion1,potion2){
     newPotion.style.backgroundColor=saveData.potionRDM.color;
     fusedPotion.style.backgroundColor=saveData.potion.color;
     fusedPotion.style.borderRadius = "20px 20px 0 0";
+    fusedPotion.style.textAlign = "center";
     fusedPotion.style.backgroundColor="none";
     oldPotion.children[1].innerText=saveData.potion.name;
     fusedPotion.children[1].innerText=saveData.potion.name;
