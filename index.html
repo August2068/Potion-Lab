@@ -41,29 +41,50 @@
                     <p></p>
                 </div>
             </div>
-            <div class="scoreScreen">
+
+        </div>
+        <!-- Fenêtre des stats -->
+        <div class="scoreScreen">
+            <!-- Bouton refresh de la potion aléatoire + nombre de fois restantes -->
             <div class="refresh">
-                <p>Refresh</p>
-                <p></p>
+                <button type="button">
+                    Refresh
+                </button>
+                <p>2 tries</p>
+
             </div>
+            <!-- Tour actuel + nombre de tour restant -->
             <div class="round">
-                <p></p>
+
+                <p>Round : <span id="roundNumber">4</span>/10</p>
+
             </div>
+            <!-- Score total -->
             <div class="scoreNumber">
-                <p></p>
+
+                <p>Coins: <span id="scoreTotal">35</span> 🪙</p>
             </div>
+            <!-- Objectifs à accomplir -->
             <div class="objectivePotion">
-                <p></p>
-                <p></p>
-                <div id="colorOBJ"><p>Color</p></div>
-            </div>
-            <div class="sell">
-                <p>Sell</p>
-                <p></p>
-                <p></p>
+
+                <p>Goals :</p>
+                <ul>
+                    <li>Effect: <span id="effectOBJ">frost resistance</span></li>
+                    <li>Power: <span id="powerOBJ">lengendary</span></li>
+                    <li>
+                        Color
+                        <span id="colorOBJ"></span>
+                    </li>
+                </ul>
+
             </div>
         </div>  
         </div>
+        <!-- Potion magique -->
+         <div class="magicPotion">
+            <img src="assets/images/love-potion.png" alt="">
+        </div>
+        <!-- Musiques et sound effects -->
         <audio loop id="musicBG">
             <source src="assets/music/background_music.wav" type="audio/wav"/>     
         </audio>

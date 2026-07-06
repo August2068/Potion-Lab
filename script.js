@@ -73,6 +73,7 @@ if(load()==null||isReload){
     }
     // oldPotion.style.backgroundColor=saveData.potion.color;
     oldPotion.style.borderRadius = "20px 20px 0 0";
+    oldPotion.style.textAlign = "center";
     oldPotion.children[1].innerText=saveData.potion.name;
     saveData.potionList.push(structuredClone(saveData.potion)); 
     potionRandomGenerator();
@@ -83,6 +84,7 @@ if(load()==null||isReload){
     }
         // newPotion.style.backgroundColor=saveData.potionRDM.color;
     newPotion.style.borderRadius = "20px 20px 0 0";
+    newPotion.style.textAlign = "center";
     newPotion.children[1].innerText=saveData.potionRDM.name;
     potionOBJGenerator(saveData.potionOBJ);
 };
@@ -205,6 +207,9 @@ function fusePotion(potion1,potion2){
     }
     newPotion.children[0].src=`assets/images/${saveData.potionRDM.color}-${saveData.potionRDM.powerName}-potion.png`;
     fusedPotion.style.borderRadius = "20px 20px 0 0";
+
+    fusedPotion.style.textAlign = "center";
+    fusedPotion.style.backgroundColor="none";
     oldPotion.children[1].innerText=saveData.potion.name;
     fusedPotion.children[1].innerText=saveData.potion.name;
     newPotion.children[1].innerText=saveData.potionRDM.name;

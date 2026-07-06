@@ -18,14 +18,14 @@
     list-style: none;
 }
 
-/* html{
-    font-size: 2em;
-    background: var(--teal-gradient);
+html{
+    background: url('assets/images/background.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 200% 200%;
-    animation: ambient 20s infinite;
-} */
+}
 
 hmtlm body{
     cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png"), auto;
@@ -35,9 +35,7 @@ body{
     font-family: "Poppins", Verdana, Tahoma, sans-serif;
     font-size: 14px;
     color: var(--white-color);
-    background: var(--teal-gradient);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    /* background: var(--teal-gradient);*/
 }
 
 h1 {
@@ -47,6 +45,7 @@ h1 {
     font-style: normal;
     font-variation-settings: "MORF" 0;
     font-size: 3rem;
+    text-shadow: 2px 2px 0 var(--black-color);
 }
 /*---------- Specific settings ----------*/
 
@@ -67,7 +66,8 @@ h1 {
     border-radius: 20px;
     margin: 20px 0;
     padding: 5px;
-    
+
+    box-shadow: 2px 2px 0 var(--black-color);
 }
 
 .potionsToFuse, .potionFused {
@@ -117,6 +117,52 @@ h1 {
     font-size: 16px;
     font-weight: 600;
 }
+
+/* Score screen */
+/* .scoreScreen{
+    background-color: var(--white-color);
+    color: var(--black-color);
+    border-radius: 20px;
+    width: 90%;
+    margin: 20px 0;
+    padding: 5px;
+} */
+
+.scoreScreen{
+    display: none;
+}
+
+.scoreScreen .refresh{
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+
+}
+
+.scoreScreen .refresh button{
+    background-color: var(--teal-color);
+    border: 2px solid var(--teal-color);
+    color: var(--white-color);
+    border-radius: 10px;
+    padding: 5px;
+    text-align: center;
+}
+
+.magicPotion{
+        display: block;
+        position: absolute;
+        padding: 5px;
+        top: 0;
+        left:0;
+        margin-top: 5px;
+        margin-right: 5px;
+        max-width: 300px;
+        z-index: 2;
+}
+
+.magicPotion img{
+    width: 50px;
+}
 /* ---------- Animations ---------- */
 @keyframes bounceAnimation {
   0%, 100% { transform: translateY(0); }
@@ -151,5 +197,33 @@ h1 {
 @media screen and (min-width: 700px) {
     .gameScreen{
         width: 700px;
+    }
+
+    /* Score screen */
+    .scoreScreen{
+        display: block;
+        background-color: var(--white-color);
+        color: var(--black-color);
+        border-radius: 20px;
+        padding: 10px;
+        position: absolute;
+        top: 0;
+        right:0;
+        margin-top: 5px;
+        margin-right: 5px;
+        font-size: 12px;
+        max-width: 300px;
+        box-shadow: -2px 2px 2px var(--black-color);
+        z-index: 2;
+    }
+/* 
+    .scoreScreen .refresh{
+        width: 100%;
+        display: inline-flex;
+        justify-content: space-between;
+    } */
+
+    .magicPotion{
+        display: none;
     }
 }
