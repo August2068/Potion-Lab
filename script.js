@@ -26,6 +26,9 @@ let saveData = {
     potionList : [],
 }
 let maxScore = 0;
+let level = 0;
+let scoreTotal = 0;
+const maxLevel = 5;
 const effect = {
     name : ["healing","poison","flying","curse","luck","petrification"],
     type : [1,-1,1,-1,1,-1],
@@ -36,7 +39,7 @@ const effect = {
 let score = 0;
 const maxRound = 10;
 let round = 0;
-const maxRefresh = 5;
+const maxRefresh = 3;
 let refresh = 0;
 let oldPotion = document.getElementById("oldPotion");
 let newPotion = document.getElementById("newPotion");
@@ -64,10 +67,9 @@ potionSelect.addEventListener("click",()=>{
     choosePotion();
 });
 
-if(load()!=null){
-    maxScore = Number(localStorage.getItem("maxScore"));
-    localStorage.clear();
-}
+
+maxScore = Number(localStorage.getItem("maxScore"));
+
 
 if(load()==null||isReload){
     potionGenerator();
@@ -113,6 +115,8 @@ shakerContainer.addEventListener("click",() =>{
     else{
         alert("Time's up ! You gotta sell your potion now !");
     }
+    refresh=0;
+    refreshButton.children[1].innerText=`${maxRefresh-refresh}/${maxRefresh}`;
 });
 
 refreshButton.children[1].innerText=`${maxRefresh-refresh}/${maxRefresh}`;
@@ -123,10 +127,23 @@ refreshButton.addEventListener("click", ()=>{
 sellButton.addEventListener("click", ()=>{
     if(round>0){
         sellPotion();
-        if(score>maxScore){
-            maxScore=score;
+        scoreTotal+=score;
+        score=0;
+        level++;
+        round=0;
+        refresh=0;
+        potionOBJGenerator(saveData.potionOBJ);
+        if(level>=maxLevel){
+            if(scoreTotal>maxScore){
+            maxScore=scoreTotal;
+            localStorage.setItem("maxScore",JSON.stringify(maxScore));
+            }
+            alert(`Game Over / your score is ${scoreTotal} / ${maxScore}`);
+            saveData.potionList=[];
+            for(let i=0; i<potionSelect.length;i++){
+                potionSelect.options.remove(i);
+            }
         }
-       //  save(saveData);
     };
 });
 
@@ -156,7 +173,14 @@ function potionRandomGenerator(){
 };
 
 function potionOBJGenerator(potionOBJ){
-    potionOBJ.power = clamp(Math.floor(Math.random() * 11),5,11);
+    if(level==0){
+        potionOBJ.power = clamp(Math.floor(Math.random() * 5),0,4);
+    }else if(level<3){
+        potionOBJ.power = clamp(Math.floor(Math.random() * 11),5,8);
+    }else{
+        potionOBJ.power = clamp(Math.floor(Math.random() * 11),8,10);
+    }
+    
     potionOBJ.powerName = effect.powerName[Math.round(potionOBJ.power/2)];
     potionOBJ.effect = randomValueFromArray(effect.name);
     if(potionOBJ.powerName=="unique"){
@@ -253,9 +277,8 @@ function sellPotion(){
     }
     score+=Math.log((maxRound/round)*10);
     score=Math.floor(score);
-    localStorage.setItem("maxScore",JSON.stringify(maxScore));
     if(round=>maxRound){
-        alert(`Game over / your score is ${score} / ${maxScore}`);
+        alert(`Round over / your score is ${score}`);
     }else{
         potionOBJGenerator(saveData.potionOBJ);
         potionRandomGenerator();
