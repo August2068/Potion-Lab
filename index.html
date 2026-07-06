@@ -8,7 +8,7 @@
     <title>Potion lab</title>
 </head>
 <body>
-    <div class="gameContainer">
+    <div class="gameContainer myCursor">
         <!-- Titre -->
         <h1>Potion Lab</h1>
         <!-- Mix des potions -->
@@ -25,7 +25,6 @@
                     <img src="assets/images/legendary-potion.png" alt="potion image" srcset="">
                     <p></p>
                 </div>
-
             </div>
             <!-- shakerContainer : animation ? -->
             <div class="shaker">
@@ -41,7 +40,6 @@
                     <p></p>
                 </div>
             </div>
-
         </div>
         <!-- Fenêtre des stats -->
         <div class="scoreScreen">
@@ -51,22 +49,17 @@
                     Refresh
                 </button>
                 <p>2 tries</p>
-
             </div>
             <!-- Tour actuel + nombre de tour restant -->
             <div class="round">
-
                 <p>Round : <span id="roundNumber">4</span>/10</p>
-
             </div>
             <!-- Score total -->
             <div class="scoreNumber">
-
                 <p>Coins: <span id="scoreTotal">35</span> 🪙</p>
             </div>
             <!-- Objectifs à accomplir -->
             <div class="objectivePotion">
-
                 <p>Goals :</p>
                 <ul>
                     <li>Effect: <span id="effectOBJ">frost resistance</span></li>
@@ -81,7 +74,7 @@
         </div>  
         </div>
         <!-- Potion magique -->
-         <div class="magicPotion">
+        <div class="magicPotion">
             <img src="assets/images/love-potion.png" alt="">
         </div>
         <!-- Musiques et sound effects -->
@@ -105,5 +98,6 @@
         </audio>
     </div>
 </body>
+<!-- Script -->
 <script src="script.js" type="module"></script>
 </html>
